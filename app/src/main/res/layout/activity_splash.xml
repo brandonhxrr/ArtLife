@@ -18,7 +18,7 @@
             android:id="@+id/imageSplash"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:src="@mipmap/ic_launcher_round"
+            android:src="@drawable/ic_launcher_round"
             android:layout_marginBottom="20dp"/>
 
         <com.google.android.material.textview.MaterialTextView
