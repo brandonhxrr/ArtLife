@@ -24,6 +24,7 @@ public class Splash extends AppCompatActivity {
             public void onFinish() {
                 Intent startIntro = new Intent(Splash.this, Intro.class);
                 startActivity(startIntro);
+                Splash.this.finish();
             }
         }.start();
     }
