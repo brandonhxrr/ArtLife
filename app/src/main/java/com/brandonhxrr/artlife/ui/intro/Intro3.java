@@ -1,11 +1,13 @@
 package com.brandonhxrr.artlife.ui.intro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.brandonhxrr.artlife.R;
+import com.brandonhxrr.artlife.ui.Login;
 import com.google.android.material.button.MaterialButton;
 
 public class Intro3 extends Fragment {
@@ -25,8 +27,8 @@ public class Intro3 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_intro3, container, false);
         start = view.findViewById(R.id.btn_start);
         start.setOnClickListener(v -> {
-            //TODO: Create intent for Login
-            //getActivity().startActivity();
+            Intent startLogin = new Intent(getActivity(), Login.class);
+            getActivity().startActivity(startLogin);
         });
         return view;
     }
