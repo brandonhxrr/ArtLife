@@ -1,10 +1,11 @@
-package com.brandonhxrr.artlife;
+package com.brandonhxrr.artlife.ui.intro;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.brandonhxrr.artlife.ui.main.IntroFragment;
+import com.brandonhxrr.artlife.R;
+import com.brandonhxrr.artlife.ui.intro.IntroFragment;
 
 public class Intro extends AppCompatActivity {
 

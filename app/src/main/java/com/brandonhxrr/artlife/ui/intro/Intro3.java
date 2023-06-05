@@ -1,4 +1,4 @@
-package com.brandonhxrr.artlife.ui.main;
+package com.brandonhxrr.artlife.ui.intro;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;

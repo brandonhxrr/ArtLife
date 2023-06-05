@@ -1,4 +1,4 @@
-package com.brandonhxrr.artlife.ui.main;
+package com.brandonhxrr.artlife.ui.intro;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.brandonhxrr.artlife.Intro2;
+
 import com.brandonhxrr.artlife.R;
 import com.google.android.material.button.MaterialButton;
 

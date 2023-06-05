@@ -5,7 +5,7 @@
     android:id="@+id/intro"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.Intro3">
+    tools:context=".ui.intro.Intro3">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"

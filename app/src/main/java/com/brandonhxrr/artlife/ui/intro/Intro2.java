@@ -1,4 +1,4 @@
-package com.brandonhxrr.artlife;
+package com.brandonhxrr.artlife.ui.intro;
 
 import android.os.Bundle;
 
@@ -8,7 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.brandonhxrr.artlife.ui.main.Intro3;
+
+import com.brandonhxrr.artlife.R;
 import com.google.android.material.button.MaterialButton;
 
 public class Intro2 extends Fragment {
