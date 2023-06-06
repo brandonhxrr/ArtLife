@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="Inicio"/>
+    <item
+        android:id="@+id/menu_camera"
+        android:enabled="true"
+        android:icon="@drawable/ic_camera"
+        android:title="Camára"/>
+    <item
+        android:id="@+id/menu_navigate"
+        android:enabled="true"
+        android:icon="@drawable/ic_navigate"
+        android:title="Explorar"/>
+    <item
+        android:id="@+id/menu_favorites"
+        android:enabled="true"
+        android:icon="@drawable/ic_favorite"
+        android:title="Favoritos"/>
+</menu>
