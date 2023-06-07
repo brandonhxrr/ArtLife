@@ -82,6 +82,8 @@ public class Login extends AppCompatActivity {
 
         if(email.equals("") || !pattern.matcher(email).matches()){
             txtEmail.setError("Correo inválido");
+        }if(password.equals("")){
+            txtEmail.setError("Llena todos los campos");
         }else{
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
