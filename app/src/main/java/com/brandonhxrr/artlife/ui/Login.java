@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
 
+import com.brandonhxrr.artlife.MainActivity;
 import com.brandonhxrr.artlife.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -68,6 +69,10 @@ public class Login extends AppCompatActivity {
 
         if(email.equals("") || !pattern.matcher(email).matches()){
             txtEmail.setError("Correo inválido");
+        }else{
+            //TODO: Delete this and implement login with Firebase
+            Intent startHome = new Intent(Login.this, MainActivity.class);
+            startActivity(startHome);
         }
     }
 }

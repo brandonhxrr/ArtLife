@@ -6,12 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.widget.Toast;
 
 import com.brandonhxrr.artlife.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
+
+import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
 
@@ -55,9 +58,11 @@ public class SignUp extends AppCompatActivity {
         String password = String.valueOf(txtPassword.getText());
         String repeatPassword = String.valueOf(txtRepeatPassword.getText());
 
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+
         if(name.equals("")){
             txtName.setError("El nombre no puede estar vacío");
-        }else if(email.equals("")){
+        }else if(email.equals("") || !pattern.matcher(email).matches()){
             txtEmail.setError("Correo inválido");
         }else if(password.equals("")){
             Toast.makeText(SignUp.this, "Contraseña inválida", Toast.LENGTH_SHORT).show();
