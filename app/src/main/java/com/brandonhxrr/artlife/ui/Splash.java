@@ -14,7 +14,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Splash extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
     Intent startIntro;
 
     @Override
@@ -22,7 +21,7 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
