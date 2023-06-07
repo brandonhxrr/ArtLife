@@ -6,15 +6,29 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
+import com.brandonhxrr.artlife.Main;
 import com.brandonhxrr.artlife.R;
 import com.brandonhxrr.artlife.ui.intro.Intro;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Splash extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    Intent startIntro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        startIntro = ( currentUser != null) ?
+                new Intent(Splash.this, Main.class) :
+                new Intent(Splash.this, Intro.class);
 
         new CountDownTimer(2000, 1000){
 
@@ -25,7 +39,6 @@ public class Splash extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                Intent startIntro = new Intent(Splash.this, Intro.class);
                 startActivity(startIntro);
                 Splash.this.finish();
             }
