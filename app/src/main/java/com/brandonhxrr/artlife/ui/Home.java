@@ -40,7 +40,7 @@ public class Home extends Fragment {
        textHello = view.findViewById(R.id.txt_hello);
        profileImage = view.findViewById(R.id.profile_image);
 
-       textHello.setText("Hola, " + currentUser.getDisplayName());
+       textHello.setText("Hola, " + currentUser.getDisplayName().split(" ")[0]);
        if(currentUser.getPhotoUrl() != null){
            Glide.with(view).load(currentUser.getPhotoUrl()).into(profileImage);
        }
