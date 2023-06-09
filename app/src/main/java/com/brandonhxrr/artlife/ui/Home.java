@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.brandonhxrr.artlife.R;
 import com.brandonhxrr.artlife.ui.intro.IntroFragment;
+import com.bumptech.glide.Glide;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,7 +42,7 @@ public class Home extends Fragment {
 
        textHello.setText("Hola, " + currentUser.getDisplayName());
        if(currentUser.getPhotoUrl() != null){
-           profileImage.setImageURI(currentUser.getPhotoUrl());
+           Glide.with(view).load(currentUser.getPhotoUrl()).into(profileImage);
        }
 
        return view;
