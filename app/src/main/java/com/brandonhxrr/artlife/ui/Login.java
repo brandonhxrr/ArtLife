@@ -89,7 +89,6 @@ public class Login extends AppCompatActivity {
         signInButton.setOnClickListener(v -> {
             Intent intent = googleSignInClient.getSignInIntent();
             startActivityForResult(intent, 100);
-
         });
 
     }
