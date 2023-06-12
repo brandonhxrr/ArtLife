@@ -9,6 +9,14 @@ public class Blog {
     String date;
     String content;
 
+    public Blog(Uri imageUri, String title, String author, String date, String content) {
+        this.imageUri = imageUri;
+        this.title = title;
+        this.author = author;
+        this.date = date;
+        this.content = content;
+    }
+
     public Uri getImageUri() {
         return imageUri;
     }
