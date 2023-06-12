@@ -1,6 +1,8 @@
 package com.brandonhxrr.artlife.ui;
 
 import android.os.Bundle;
+
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +28,7 @@ public class Home extends Fragment {
     CircleImageView profileImage;
     RecyclerView recyclerView;
     FirebaseUser currentUser;
+    AppCompatImageView map;
 
     public Home() {}
     public static Home newInstance() {
@@ -47,6 +50,7 @@ public class Home extends Fragment {
        textHello = view.findViewById(R.id.txt_hello);
        profileImage = view.findViewById(R.id.profile_image);
        recyclerView = view.findViewById(R.id.recycler_view);
+       map = view.findViewById(R.id.map);
 
        BlogData data = new BlogData();
 
@@ -57,6 +61,10 @@ public class Home extends Fragment {
        if(currentUser.getPhotoUrl() != null){
            Glide.with(view).load(currentUser.getPhotoUrl()).into(profileImage);
        }
+
+       map.setOnClickListener(v -> {
+
+       });
 
        return view;
     }
