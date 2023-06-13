@@ -20,4 +20,9 @@
         android:enabled="true"
         android:icon="@drawable/ic_favorite"
         android:title="Favoritos"/>
+    <item
+        android:id="@+id/menu_blog"
+        android:enabled="true"
+        android:icon="@drawable/ic_blog"
+        android:title="Blogs"/>
 </menu>
