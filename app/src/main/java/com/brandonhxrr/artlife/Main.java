@@ -13,6 +13,8 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+
+import com.brandonhxrr.artlife.ui.Blogs;
 import com.brandonhxrr.artlife.ui.Home;
 import android.Manifest;
 import android.os.Environment;
@@ -61,6 +63,10 @@ public class Main extends AppCompatActivity {
 
             } else if (itemId == R.id.menu_home) {
 
+            }else if (itemId == R.id.menu_blog){
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.main_container, Blogs.newInstance())
+                        .commitNow();
             }
             return true;
         });
