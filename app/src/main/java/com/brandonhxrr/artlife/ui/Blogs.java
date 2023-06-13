@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.brandonhxrr.artlife.R;
 import com.brandonhxrr.artlife.data.Blog.BlogAdapter;
 import com.brandonhxrr.artlife.data.Blog.BlogData;
+import com.brandonhxrr.artlife.data.LargeBlog.LargeBlogAdapter;
 
 public class Blogs extends Fragment {
 
@@ -38,7 +39,7 @@ public class Blogs extends Fragment {
         BlogData data = new BlogData();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(new BlogAdapter(data.getData()));
+        recyclerView.setAdapter(new LargeBlogAdapter(data.getData()));
         return view;
     }
 }

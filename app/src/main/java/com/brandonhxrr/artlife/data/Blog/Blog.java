@@ -3,11 +3,11 @@ package com.brandonhxrr.artlife.data.Blog;
 import android.net.Uri;
 
 public class Blog {
-    Uri imageUri;
-    String title;
-    String author;
-    String date;
-    String content;
+    public Uri imageUri;
+    public String title;
+    public String author;
+    public String date;
+    public String content;
 
     public Blog(Uri imageUri, String title, String author, String date, String content) {
         this.imageUri = imageUri;

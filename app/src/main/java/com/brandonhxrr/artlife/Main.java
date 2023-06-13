@@ -62,7 +62,9 @@ public class Main extends AppCompatActivity {
             } else if (itemId == R.id.menu_favorites) {
 
             } else if (itemId == R.id.menu_home) {
-
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.main_container, Home.newInstance())
+                        .commitNow();
             }else if (itemId == R.id.menu_blog){
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.main_container, Blogs.newInstance())
@@ -126,7 +128,37 @@ public class Main extends AppCompatActivity {
     }
 
     private void openMaps() {
-        // Tu código para abrir Google Maps aquí
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            double latitude = 0.0;
+            double longitude = 0.0;
+
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                if (location != null) {
+                    latitude = location.getLatitude();
+                    longitude = location.getLongitude();
+                }
+            }
+
+            String searchQuery = "galería museo de arte";
+            String locationQuery = String.format(Locale.getDefault(), "%f,%f", latitude, longitude);
+            String uriString = String.format(Locale.getDefault(), "geo:%s?q=%s", locationQuery, Uri.encode(searchQuery));
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uriString));
+
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "No se encontró Google Maps en el dispositivo", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Por favor, activa la ubicación para usar esta función", Toast.LENGTH_SHORT).show();
+            Intent locationSettingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(locationSettingsIntent);
+        }
     }
 
     private void openCamera() {
