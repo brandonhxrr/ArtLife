@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Painting">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="220dp"
+        android:orientation="vertical"
+        android:padding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/painting_image"
+            android:layout_width="match_parent"
+            android:layout_height="330dp"
+            android:layout_marginBottom="30dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/intro1" />
+
+        <ImageView
+            android:id="@+id/fullscreen_button"
+            android:layout_width="31dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="360dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginRight="130dp"
+            app:srcCompat="@drawable/baseline_fullscreen_24" />
+
+        <TextView
+            android:id="@+id/title_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="343dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginBottom="8dp"
+            android:text="Pintura"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/save_button"
+            android:layout_width="31dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="320dp"
+            android:layout_marginTop="349dp"
+            app:srcCompat="@drawable/save" />
+
+        <ImageView
+            android:id="@+id/IDK_button"
+            android:layout_width="31dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="360dp"
+            android:layout_marginTop="349dp"
+            app:srcCompat="@drawable/baseline_open_in_new_24" />
+
+        <TextView
+            android:id="@+id/autor_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="392dp"
+            android:layout_marginRight="194dp"
+            android:layout_marginBottom="20dp"
+            android:text="Autor"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/detail_image"
+            android:layout_width="wrap_content"
+            android:layout_height="211dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="430dp"
+            android:layout_marginRight="30dp"
+            android:text="Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Morbi et nisl hendrerit,
+            aliquet mi sed, scelerisque tortor. Aliquam eu scelerisque quam,
+            ac tristique dolor. Aliquam nulla risus, fermentum feugiat tortor quis,
+            facilisis cursus arcu. Sed eu purus placerat, aliquet augue nec,
+            molestie felis. Fusce porta." />
+
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
