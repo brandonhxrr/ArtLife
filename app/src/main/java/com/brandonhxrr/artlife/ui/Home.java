@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import com.brandonhxrr.artlife.R;
 import com.brandonhxrr.artlife.data.Blog.BlogAdapter;
 import com.brandonhxrr.artlife.data.Blog.BlogData;
+import com.brandonhxrr.artlife.data.Painting.PaintingAdapter;
+import com.brandonhxrr.artlife.data.Painting.PaintingData;
 import com.brandonhxrr.artlife.ui.intro.IntroFragment;
 import com.bumptech.glide.Glide;
 import com.google.android.material.textview.MaterialTextView;
@@ -26,7 +28,7 @@ public class Home extends Fragment {
 
     MaterialTextView textHello;
     CircleImageView profileImage;
-    RecyclerView recyclerView;
+    RecyclerView recyclerView, recentsRecyclerView;
     FirebaseUser currentUser;
     AppCompatImageView map;
 
@@ -50,12 +52,18 @@ public class Home extends Fragment {
        textHello = view.findViewById(R.id.txt_hello);
        profileImage = view.findViewById(R.id.profile_image);
        recyclerView = view.findViewById(R.id.recycler_view);
+       recentsRecyclerView = view.findViewById(R.id.recent_recycler_view);
        map = view.findViewById(R.id.map);
 
        BlogData data = new BlogData();
 
        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
        recyclerView.setAdapter(new BlogAdapter(data.getData()));
+
+        PaintingData paintingData = new PaintingData();
+
+        recentsRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(),  LinearLayoutManager.HORIZONTAL, false));
+        recentsRecyclerView.setAdapter(new PaintingAdapter(paintingData.getData()));
 
        textHello.setText("Hola, " + currentUser.getDisplayName().split(" ")[0]);
        if(currentUser.getPhotoUrl() != null){
