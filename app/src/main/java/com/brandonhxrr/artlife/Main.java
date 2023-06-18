@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.brandonhxrr.artlife.ui.Blogs;
+import com.brandonhxrr.artlife.ui.Favorites;
 import com.brandonhxrr.artlife.ui.Home;
 import android.Manifest;
 import android.os.Environment;
@@ -60,7 +61,9 @@ public class Main extends AppCompatActivity {
                     openMaps();
                 }
             } else if (itemId == R.id.menu_favorites) {
-
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.main_container, Favorites.newInstance())
+                        .commitNow();
             } else if (itemId == R.id.menu_home) {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.main_container, Home.newInstance())
