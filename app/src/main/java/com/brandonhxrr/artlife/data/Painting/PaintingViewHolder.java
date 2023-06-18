@@ -20,7 +20,7 @@ public class PaintingViewHolder extends RecyclerView.ViewHolder {
 
         paintingTitle = itemView.findViewById(R.id.painting_title);
         paintingAuthor = itemView.findViewById(R.id.painting_author);
-        paintingImage = itemView.findViewById(R.id.blog_image);
+        paintingImage = itemView.findViewById(R.id.painting_image);
     }
 
     public ImageView getPaintingImage() {

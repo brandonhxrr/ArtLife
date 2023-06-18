@@ -20,7 +20,7 @@ public class PaintingAdapter extends RecyclerView.Adapter<PaintingViewHolder> {
     @Override
     public PaintingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.blog, parent, false);
+                .inflate(R.layout.painting, parent, false);
         return new PaintingViewHolder(v);
     }
 

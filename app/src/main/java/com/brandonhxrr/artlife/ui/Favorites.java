@@ -2,6 +2,7 @@ package com.brandonhxrr.artlife.ui;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import com.brandonhxrr.artlife.R;
 import com.brandonhxrr.artlife.data.Blog.BlogData;
 import com.brandonhxrr.artlife.data.LargeBlog.LargeBlogAdapter;
+import com.brandonhxrr.artlife.data.Painting.PaintingAdapter;
+import com.brandonhxrr.artlife.data.Painting.PaintingData;
 
 public class Favorites extends Fragment {
 
@@ -34,10 +37,10 @@ public class Favorites extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycler_view);
 
-        BlogData data = new BlogData();
+        PaintingData data = new PaintingData();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(new LargeBlogAdapter(data.getData()));
+        recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), 2, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(new PaintingAdapter(data.getData()));
         return view;
     }
 }
