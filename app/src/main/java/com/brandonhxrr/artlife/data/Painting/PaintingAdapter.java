@@ -7,9 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.brandonhxrr.artlife.R;
+import com.brandonhxrr.artlife.ui.PaintingDetail;
 import com.bumptech.glide.Glide;
-
-import java.io.Serializable;
 
 public class PaintingAdapter extends RecyclerView.Adapter<PaintingViewHolder> {
 
@@ -33,8 +32,8 @@ public class PaintingAdapter extends RecyclerView.Adapter<PaintingViewHolder> {
         holder.getPaintingTitle().setText(paintings[position].name);
         holder.getPaintingAuthor().setText(paintings[position].author);
         holder.getCard().setOnClickListener(v -> {
-            Intent startDetails = new Intent(holder.itemView.getContext(), com.brandonhxrr.artlife.ui.Painting.class);
-            startDetails.putExtra("Data", (Serializable) paintings[position]);
+            Intent startDetails = new Intent(holder.itemView.getContext(), PaintingDetail.class);
+            startDetails.putExtra("Data", paintings[position]);
             holder.itemView.getContext().startActivity(startDetails);
         });
     }

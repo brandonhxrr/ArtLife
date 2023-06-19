@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:context=".ui.Painting">
+        tools:context=".ui.PaintingDetail">
 
         <RelativeLayout
             android:layout_width="match_parent"

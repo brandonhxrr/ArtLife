@@ -1,16 +1,13 @@
 package com.brandonhxrr.artlife.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.brandonhxrr.artlife.R;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Logout extends AppCompatActivity {

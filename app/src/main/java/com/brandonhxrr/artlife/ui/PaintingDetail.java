@@ -2,7 +2,6 @@ package com.brandonhxrr.artlife.ui;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,23 +9,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.brandonhxrr.artlife.R;
+import com.brandonhxrr.artlife.data.Painting.Painting;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class Painting extends AppCompatActivity {
+public class PaintingDetail extends AppCompatActivity {
 
-    private ImageView paintingImage;
-    private FloatingActionButton fullscreenButton;
-    private TextView paintingTitle;
-    private TextView paintingLocation;
-    private TextView paintingMuseum;
-    private ImageButton saveButton;
-    private ImageButton openButton;
-    private TextView paintingAuthor;
-    private TextView paintingDescription;
-    com.brandonhxrr.artlife.data.Painting.Painting painting;
+    Painting painting;
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
@@ -34,22 +24,21 @@ public class Painting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_painting);
 
-        paintingImage = findViewById(R.id.painting_image);
-        fullscreenButton = findViewById(R.id.fab_button);
-        paintingTitle = findViewById(R.id.title_image);
-        paintingLocation = findViewById(R.id.painting_location);
-        paintingMuseum = findViewById(R.id.painting_museum);
-        saveButton = findViewById(R.id.save_button);
-        openButton = findViewById(R.id.open_button);
-        paintingAuthor = findViewById(R.id.painting_author);
-        paintingDescription = findViewById(R.id.detail_image);
+        ImageView paintingImage = findViewById(R.id.painting_image);
+        FloatingActionButton fullscreenButton = findViewById(R.id.fab_button);
+        TextView paintingTitle = findViewById(R.id.title_image);
+        TextView paintingLocation = findViewById(R.id.painting_location);
+        TextView paintingMuseum = findViewById(R.id.painting_museum);
+        ImageButton saveButton = findViewById(R.id.save_button);
+        ImageButton openButton = findViewById(R.id.open_button);
+        TextView paintingAuthor = findViewById(R.id.painting_author);
+        TextView paintingDescription = findViewById(R.id.detail_image);
 
         Intent intent = getIntent();
 
         if (intent != null && intent.hasExtra("Data")) {
-           painting = (com.brandonhxrr.artlife.data.Painting.Painting) intent.getSerializableExtra("Data");
+           painting = (Painting) intent.getSerializableExtra("Data");
 
-            Toast.makeText(this, "TXT: " + painting.getName(), Toast.LENGTH_SHORT).show();
             Glide.with(this).load(painting.getImageUri()).into(paintingImage);
             paintingTitle.setText(painting.getName());
             paintingLocation.setText(painting.getLocation() + ", " + painting.getDate());

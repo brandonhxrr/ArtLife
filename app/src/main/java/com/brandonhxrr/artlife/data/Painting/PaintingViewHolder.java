@@ -2,11 +2,9 @@ package com.brandonhxrr.artlife.data.Painting;
 
 import android.view.View;
 import android.widget.ImageView;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.brandonhxrr.artlife.R;
 import com.google.android.material.textview.MaterialTextView;
 
