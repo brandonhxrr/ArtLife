@@ -1,5 +1,6 @@
 package com.brandonhxrr.artlife.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatImageView;
@@ -83,6 +84,11 @@ public class Home extends Fragment {
 
         map.getSettings().setJavaScriptEnabled(true);
         map.loadUrl(query);
+
+        profileImage.setOnClickListener(v -> {
+            Intent startProfile = new Intent(getContext(), Logout.class);
+            getActivity().startActivity(startProfile);
+        });
 
        return view;
     }

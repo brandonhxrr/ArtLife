@@ -1,6 +1,8 @@
 package com.brandonhxrr.artlife.data.Painting;
 
-public class Painting {
+import java.io.Serializable;
+
+public class Painting implements Serializable {
     int id;
     String name;
     String author;
