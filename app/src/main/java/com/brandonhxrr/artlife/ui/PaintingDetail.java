@@ -3,6 +3,7 @@ package com.brandonhxrr.artlife.ui;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -25,7 +26,7 @@ public class PaintingDetail extends AppCompatActivity {
         setContentView(R.layout.activity_painting);
 
         ImageView paintingImage = findViewById(R.id.painting_image);
-        FloatingActionButton fullscreenButton = findViewById(R.id.fab_button);
+        TextView paintingTechnique = findViewById(R.id.painting_technique);
         TextView paintingTitle = findViewById(R.id.title_image);
         TextView paintingLocation = findViewById(R.id.painting_location);
         TextView paintingMuseum = findViewById(R.id.painting_museum);
@@ -44,7 +45,20 @@ public class PaintingDetail extends AppCompatActivity {
             paintingLocation.setText(painting.getLocation() + ", " + painting.getDate());
             paintingMuseum.setText(painting.getMuseum());
             paintingAuthor.setText(painting.getAuthor());
+            paintingTechnique.setText(painting.getTechnique());
             paintingDescription.setText(painting.getDescription());
+
+            openButton.setOnClickListener(v -> {
+
+                Intent startMaps = new Intent(Intent.ACTION_VIEW, Uri.parse(painting.getUrlMuseum()));
+
+                if (startMaps.resolveActivity(getPackageManager()) != null) {
+                    startActivity(startMaps);
+                } else {
+                    Toast.makeText(getApplicationContext(), "No se puede abrir Google Maps", Toast.LENGTH_SHORT).show();
+                }
+
+            });
         }
     }
 }

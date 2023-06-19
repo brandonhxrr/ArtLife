@@ -10,29 +10,13 @@
         android:orientation="vertical"
         tools:context=".ui.PaintingDetail">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/painting_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp">
-
-            <ImageView
-                android:id="@+id/painting_image"
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:layout_marginBottom="30dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/intro1" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="16dp"
-                android:src="@drawable/baseline_fullscreen_24" />
-
-        </RelativeLayout>
+            android:layout_height="240dp"
+            android:layout_marginBottom="35dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/intro1" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,12 +38,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
+                android:padding="10dp"
+                android:background="@android:color/transparent"
                 android:src="@drawable/save"/>
             <ImageButton
                 android:id="@+id/open_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
+                android:padding="10dp"
+                android:background="@android:color/transparent"
+                android:layout_marginEnd="25dp"
                 android:src="@drawable/baseline_open_in_new_24"/>
         </LinearLayout>
 
@@ -67,6 +55,7 @@
             android:id="@+id/painting_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/archia"
             android:layout_marginHorizontal="30dp"
             android:layout_marginBottom="10dp"
             android:text="Autor"
@@ -78,15 +67,27 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginBottom="10dp"
+            android:fontFamily="@font/archia"
             android:text="Location"
             android:textSize="16sp" />
         <TextView
             android:id="@+id/painting_museum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/archia"
             android:layout_marginHorizontal="30dp"
             android:layout_marginBottom="10dp"
             android:text="Museum"
+            android:textSize="16sp" />
+
+            <TextView
+            android:id="@+id/painting_technique"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/archia"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="10dp"
+            android:text="Oleo"
             android:textSize="16sp" />
 
         <TextView
@@ -94,8 +95,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:fontFamily="@font/archia"
+            android:justificationMode="inter_word"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="50dp"
             android:text="Lorem ipsum dolor sit amet,
             consectetur adipiscing elit. Morbi et nisl hendrerit,
             aliquet mi sed, scelerisque tortor. Aliquam eu scelerisque quam,
