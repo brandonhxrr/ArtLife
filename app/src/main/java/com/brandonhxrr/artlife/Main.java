@@ -24,6 +24,7 @@ import android.provider.Settings;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.brandonhxrr.artlife.ui.Navigate;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
@@ -58,7 +59,9 @@ public class Main extends AppCompatActivity {
                 if (!checkPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
                     requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, MY_PERMISSIONS_REQUEST);
                 } else {
-                    openMaps();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.main_container, Navigate.newInstance())
+                            .commitNow();
                 }
             } else if (itemId == R.id.menu_favorites) {
                 getSupportFragmentManager().beginTransaction()
