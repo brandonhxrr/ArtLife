@@ -36,7 +36,8 @@
             android:layout_height="wrap_content"
             android:text="Decubre lo último en arte"
             android:layout_marginHorizontal="30dp"
-            android:textSize="14sp"/>
+            android:textStyle="bold"
+            android:textSize="16sp"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
@@ -47,19 +48,22 @@
             android:layout_height="wrap_content"
             android:text="Cerca de ti"
             android:layout_marginHorizontal="30dp"
-            android:textSize="14sp"/>
-        <androidx.appcompat.widget.AppCompatImageView
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+        <WebView
             android:id="@+id/map"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/map"
-            android:layout_marginVertical="20dp"/>
+            android:layout_height="300dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginVertical="20dp"
+            tools:ignore="WebViewLayout" />
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Capturas recientes"
             android:layout_marginHorizontal="30dp"
-            android:textSize="14sp"/>
+            android:textStyle="bold"
+            android:textSize="16sp"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recent_recycler_view"
             android:layout_width="match_parent"

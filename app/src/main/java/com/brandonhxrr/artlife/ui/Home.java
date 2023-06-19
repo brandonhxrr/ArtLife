@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+
 import com.brandonhxrr.artlife.R;
 import com.brandonhxrr.artlife.data.Blog.BlogAdapter;
 import com.brandonhxrr.artlife.data.Blog.BlogData;
@@ -30,7 +33,7 @@ public class Home extends Fragment {
     CircleImageView profileImage;
     RecyclerView recyclerView, recentsRecyclerView;
     FirebaseUser currentUser;
-    AppCompatImageView map;
+    WebView map;
 
     public Home() {}
     public static Home newInstance() {
@@ -71,8 +74,15 @@ public class Home extends Fragment {
        }
 
        map.setOnClickListener(v -> {
-
+           getParentFragmentManager().beginTransaction()
+                   .replace(R.id.main_container, Navigate.newInstance())
+                   .commitNow();
        });
+
+        String query = "https://www.google.com/maps/search/museo%20%de%20arte";
+
+        map.getSettings().setJavaScriptEnabled(true);
+        map.loadUrl(query);
 
        return view;
     }
