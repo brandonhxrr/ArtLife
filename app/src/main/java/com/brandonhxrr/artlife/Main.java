@@ -1,32 +1,23 @@
 package com.brandonhxrr.artlife;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-
 import com.brandonhxrr.artlife.ui.Blogs;
 import com.brandonhxrr.artlife.ui.Favorites;
 import com.brandonhxrr.artlife.ui.Home;
 import android.Manifest;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.provider.Settings;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.brandonhxrr.artlife.ui.Navigate;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -57,7 +48,7 @@ public class Main extends AppCompatActivity {
                 checkPermissionsAndOpenCamera();
             } else if (itemId == R.id.menu_navigate) {
                 if (!checkPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
-                    requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, MY_PERMISSIONS_REQUEST);
+                    requestPermission();
                 } else {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.main_container, Navigate.newInstance())
@@ -91,22 +82,20 @@ public class Main extends AppCompatActivity {
         return result == PackageManager.PERMISSION_GRANTED;
     }
 
-    private void requestPermission(String permission, int requestCode) {
-        ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Main.MY_PERMISSIONS_REQUEST);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == MY_PERMISSIONS_REQUEST) {
             if (grantResults.length > 0) {
-                boolean cameraPermissionGranted = grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                boolean cameraPermissionGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                 boolean storagePermissionGranted = grantResults.length > 1 && grantResults[1] == PackageManager.PERMISSION_GRANTED;
 
                 if (cameraPermissionGranted && storagePermissionGranted) {
-                    openMaps();
-                } else {
-                    // Al menos uno de los permisos fue denegado, muestra un mensaje o toma alguna acción alternativa
+                   openCamera();
                 }
             }
         }
@@ -133,40 +122,7 @@ public class Main extends AppCompatActivity {
         }
     }
 
-    private void openMaps() {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-            double latitude = 0.0;
-            double longitude = 0.0;
-
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                if (location != null) {
-                    latitude = location.getLatitude();
-                    longitude = location.getLongitude();
-                }
-            }
-
-            String searchQuery = "galería museo de arte";
-            String locationQuery = String.format(Locale.getDefault(), "%f,%f", latitude, longitude);
-            String uriString = String.format(Locale.getDefault(), "geo:%s?q=%s", locationQuery, Uri.encode(searchQuery));
-
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uriString));
-
-            if (intent.resolveActivity(getPackageManager()) != null) {
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, "No se encontró Google Maps en el dispositivo", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(this, "Por favor, activa la ubicación para usar esta función", Toast.LENGTH_SHORT).show();
-            Intent locationSettingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            startActivity(locationSettingsIntent);
-        }
-    }
-
+    @SuppressLint("QueryPermissionsNeeded")
     private void openCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -189,14 +145,9 @@ public class Main extends AppCompatActivity {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File imageFile = File.createTempFile(imageFileName, ".jpg", storageDir);
-        return imageFile;
+        return File.createTempFile(imageFileName, ".jpg", storageDir);
     }
 
-    private void openGallery() {
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(galleryIntent, REQUEST_IMAGE_GALLERY);
-    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

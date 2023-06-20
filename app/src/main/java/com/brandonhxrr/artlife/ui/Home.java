@@ -1,5 +1,6 @@
 package com.brandonhxrr.artlife.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -48,6 +49,7 @@ public class Home extends Fragment {
         currentUser = mAuth.getCurrentUser();
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

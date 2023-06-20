@@ -1,24 +1,22 @@
 package com.brandonhxrr.artlife.ui;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Toast;
 import com.brandonhxrr.artlife.R;
-import java.util.Locale;
 
 public class Navigate extends Fragment {
 
@@ -50,6 +48,7 @@ public class Navigate extends Fragment {
     }
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void openMaps() {
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
@@ -66,13 +65,9 @@ public class Navigate extends Fragment {
                 }
             }
 
-            String searchQuery = "galería museo de arte";
-            String locationQuery = String.format(Locale.getDefault(), "%f,%f", latitude, longitude);
-            String uriString = String.format(Locale.getDefault(), "geo:%s?q=%s", locationQuery, Uri.encode(searchQuery));
             String query = "https://www.google.com/maps/search/museo%20%de%20arte/"+latitude+","+longitude;
 
             webView.getSettings().setJavaScriptEnabled(true);
-            Log.d("MAPS100: ", uriString);
             webView.loadUrl(query);
 
 
