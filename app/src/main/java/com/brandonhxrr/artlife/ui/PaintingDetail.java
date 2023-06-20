@@ -1,5 +1,6 @@
 package com.brandonhxrr.artlife.ui;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -13,11 +14,23 @@ import android.widget.Toast;
 import com.brandonhxrr.artlife.R;
 import com.brandonhxrr.artlife.data.Painting.Painting;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
 
 public class PaintingDetail extends AppCompatActivity {
 
     Painting painting;
+    Boolean isFavorite = false;
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
@@ -48,6 +61,27 @@ public class PaintingDetail extends AppCompatActivity {
             paintingTechnique.setText(painting.getTechnique());
             paintingDescription.setText(painting.getDescription());
 
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            DocumentReference userRef = db.collection("users").document(mAuth.getCurrentUser().getUid());
+            DocumentReference paintingRef = userRef.collection("favorites").document(String.valueOf(painting.getId()));
+
+            paintingRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        isFavorite = true;
+                        saveButton.setImageResource(R.drawable.saved_icon);
+                    } else {
+                        isFavorite = false;
+                        saveButton.setImageResource(R.drawable.not_saved_icon);
+                    }
+                } else {
+                }
+            });
+
+
             openButton.setOnClickListener(v -> {
 
                 Intent startMaps = new Intent(Intent.ACTION_VIEW, Uri.parse(painting.getUrlMuseum()));
@@ -58,6 +92,21 @@ public class PaintingDetail extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "No se puede abrir Google Maps", Toast.LENGTH_SHORT).show();
                 }
 
+            });
+
+            saveButton.setOnClickListener(v -> {
+                if (isFavorite) {
+                    paintingRef.delete()
+                            .addOnSuccessListener(aVoid -> saveButton.setImageResource(R.drawable.not_saved_icon))
+                            .addOnFailureListener(e -> {
+                            });
+                } else {
+                    paintingRef.set(new HashMap<>())
+                            .addOnSuccessListener(aVoid -> saveButton.setImageResource(R.drawable.saved_icon))
+                            .addOnFailureListener(e -> {
+                            });
+                }
+                isFavorite = !isFavorite;
             });
         }
     }
