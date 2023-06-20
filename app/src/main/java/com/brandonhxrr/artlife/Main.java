@@ -10,6 +10,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+
+import com.brandonhxrr.artlife.data.Painting.Painting;
+import com.brandonhxrr.artlife.data.Painting.PaintingData;
 import com.brandonhxrr.artlife.ui.Blogs;
 import com.brandonhxrr.artlife.ui.Favorites;
 import com.brandonhxrr.artlife.ui.Home;
@@ -17,6 +20,7 @@ import android.Manifest;
 import android.os.Environment;
 import android.provider.MediaStore;
 import com.brandonhxrr.artlife.ui.Navigate;
+import com.brandonhxrr.artlife.ui.PaintingDetail;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +35,7 @@ public class Main extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST = 100;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_IMAGE_GALLERY = 2;
+    int i = 0;
 
     private Uri imageUri;
     BottomNavigationView bottomNavigationView;
@@ -155,11 +160,18 @@ public class Main extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_IMAGE_CAPTURE) {
                 // Abrir Google Lens con la imagen capturada
-                openGoogleLens(imageUri);
+                //openGoogleLens(imageUri);
+
+                PaintingData pdata = new PaintingData();
+
+                Intent intent = new Intent(Main.this, PaintingDetail.class);
+                intent.putExtra("Data", pdata.getData()[i%pdata.getData().length]);
+                startActivity(intent);
             } else if (requestCode == REQUEST_IMAGE_GALLERY && data != null && data.getData() != null) {
                 // Abrir Google Lens con la imagen seleccionada de la galería
                 openGoogleLens(data.getData());
             }
+            i++;
         }
     }
 
