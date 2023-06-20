@@ -2,6 +2,7 @@ package com.brandonhxrr.artlife.data.LargeBlog;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ public class LargeBlogViewHolder extends RecyclerView.ViewHolder {
     private MaterialTextView blogAuthor;
     private MaterialTextView blogDate;
     private ImageView blogImage;
+    private LinearLayout container;
 
     public LargeBlogViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -24,6 +26,7 @@ public class LargeBlogViewHolder extends RecyclerView.ViewHolder {
         blogImage = itemView.findViewById(R.id.blog_image);
         blogAuthor = itemView.findViewById(R.id.blog_author);
         blogDate = itemView.findViewById(R.id.blog_date);
+        container = itemView.findViewById(R.id.container);
     }
 
     public ImageView getBlogImage() {
@@ -40,5 +43,9 @@ public class LargeBlogViewHolder extends RecyclerView.ViewHolder {
 
     public MaterialTextView getBlogDate() {
         return blogDate;
+    }
+
+    public LinearLayout getContainer() {
+        return container;
     }
 }

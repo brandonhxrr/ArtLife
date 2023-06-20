@@ -1,8 +1,8 @@
 package com.brandonhxrr.artlife.data.Blog;
 
-import android.net.Uri;
+import java.io.Serializable;
 
-public class Blog {
+public class Blog implements Serializable {
     public String imageUri;
     public String title;
     public String author;
