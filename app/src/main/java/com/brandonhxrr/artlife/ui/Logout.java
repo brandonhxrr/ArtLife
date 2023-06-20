@@ -37,7 +37,10 @@ public class Logout extends AppCompatActivity {
         btnLogout.setOnClickListener(v -> {
             mAuth.signOut();
             Intent startLogin = new Intent(Logout.this, Login.class);
+            startLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(startLogin);
+            finish();
         });
+
     }
 }
