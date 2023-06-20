@@ -3,20 +3,20 @@ package com.brandonhxrr.artlife.data.Blog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.brandonhxrr.artlife.R;
 import com.bumptech.glide.Glide;
-import com.google.android.material.textview.MaterialTextView;
+
+import java.util.List;
 
 public class BlogAdapter extends RecyclerView.Adapter<BlogViewHolder> {
 
-    private Blog blogs[];
+    List<Blog> blogs;
 
-    public BlogAdapter(Blog[] blogs) {
+    public BlogAdapter(List<Blog> blogs) {
         this.blogs = blogs;
     }
 
@@ -30,12 +30,12 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BlogViewHolder holder, int position) {
-        Glide.with(holder.itemView).load(blogs[position].imageUri).into(holder.getBlogImage());
-        holder.getBlogTitle().setText(blogs[position].title);
+        Glide.with(holder.itemView).load(blogs.get(position).imageUri).into(holder.getBlogImage());
+        holder.getBlogTitle().setText(blogs.get(position).title);
     }
 
     @Override
     public int getItemCount() {
-        return blogs.length;
+        return blogs.size();
     }
 }

@@ -3,13 +3,17 @@ package com.brandonhxrr.artlife.data.Blog;
 import android.net.Uri;
 
 public class Blog {
-    public Uri imageUri;
+    public String imageUri;
     public String title;
     public String author;
     public String date;
     public String content;
 
-    public Blog(Uri imageUri, String title, String author, String date, String content) {
+    public  Blog() {
+
+    }
+
+    public Blog(String imageUri, String title, String author, String date, String content) {
         this.imageUri = imageUri;
         this.title = title;
         this.author = author;
@@ -17,11 +21,11 @@ public class Blog {
         this.content = content;
     }
 
-    public Uri getImageUri() {
+    public String getImageUri() {
         return imageUri;
     }
 
-    public void setImageUri(Uri imageUri) {
+    public void setImageUri(String imageUri) {
         this.imageUri = imageUri;
     }
 
