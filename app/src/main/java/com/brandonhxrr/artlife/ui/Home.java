@@ -71,11 +71,6 @@ public class Home extends Fragment {
        recentsRecyclerView = view.findViewById(R.id.recent_recycler_view);
        map = view.findViewById(R.id.map);
 
-       //BlogData data = new BlogData();
-
-       //recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
-       //recyclerView.setAdapter(new BlogAdapter(data.getData()));
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("blogs")
@@ -96,9 +91,6 @@ public class Home extends Fragment {
                     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
                     recyclerView.setAdapter(new BlogAdapter(blogItemList));
                 });
-
-
-
 
         PaintingData paintingData = new PaintingData();
 

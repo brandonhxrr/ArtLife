@@ -9,11 +9,13 @@ import com.brandonhxrr.artlife.R;
 import com.brandonhxrr.artlife.data.Blog.Blog;
 import com.bumptech.glide.Glide;
 
+import java.util.List;
+
 public class LargeBlogAdapter extends RecyclerView.Adapter<LargeBlogViewHolder> {
 
-    private Blog blogs[];
+    List<Blog> blogs;
 
-    public LargeBlogAdapter(Blog[] blogs) {
+    public LargeBlogAdapter(List<Blog> blogs) {
         this.blogs = blogs;
     }
 
@@ -27,14 +29,14 @@ public class LargeBlogAdapter extends RecyclerView.Adapter<LargeBlogViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull LargeBlogViewHolder holder, int position) {
-        Glide.with(holder.itemView).load(blogs[position].getImageUri()).into(holder.getBlogImage());
-        holder.getBlogTitle().setText(blogs[position].getTitle());
-        holder.getBlogAuthor().setText(blogs[position].getAuthor());
-        holder.getBlogDate().setText(blogs[position].getDate());
+        Glide.with(holder.itemView).load(blogs.get(position).getImageUri()).into(holder.getBlogImage());
+        holder.getBlogTitle().setText(blogs.get(position).getTitle());
+        holder.getBlogAuthor().setText(blogs.get(position).getAuthor());
+        holder.getBlogDate().setText(blogs.get(position).getDate());
     }
 
     @Override
     public int getItemCount() {
-        return blogs.length;
+        return blogs.size();
     }
 }
