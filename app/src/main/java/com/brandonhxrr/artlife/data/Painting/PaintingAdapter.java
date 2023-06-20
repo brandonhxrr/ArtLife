@@ -7,14 +7,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.brandonhxrr.artlife.R;
+import com.brandonhxrr.artlife.data.Blog.Blog;
 import com.brandonhxrr.artlife.ui.PaintingDetail;
 import com.bumptech.glide.Glide;
 
+import java.util.List;
+
 public class PaintingAdapter extends RecyclerView.Adapter<PaintingViewHolder> {
 
-    private final Painting[] paintings;
+    List<Painting> paintings;
 
-    public PaintingAdapter(Painting[] paintings) {
+    public PaintingAdapter(List<Painting> paintings) {
         this.paintings = paintings;
     }
 
@@ -28,18 +31,18 @@ public class PaintingAdapter extends RecyclerView.Adapter<PaintingViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PaintingViewHolder holder, int position) {
-        Glide.with(holder.itemView).load(paintings[position].imageUri).into(holder.getPaintingImage());
-        holder.getPaintingTitle().setText(paintings[position].name);
-        holder.getPaintingAuthor().setText(paintings[position].author);
+        Glide.with(holder.itemView).load(paintings.get(position).imageUri).into(holder.getPaintingImage());
+        holder.getPaintingTitle().setText(paintings.get(position).name);
+        holder.getPaintingAuthor().setText(paintings.get(position).author);
         holder.getCard().setOnClickListener(v -> {
             Intent startDetails = new Intent(holder.itemView.getContext(), PaintingDetail.class);
-            startDetails.putExtra("Data", paintings[position]);
+            startDetails.putExtra("Data", paintings.get(position));
             holder.itemView.getContext().startActivity(startDetails);
         });
     }
 
     @Override
     public int getItemCount() {
-        return paintings.length;
+        return paintings.size();
     }
 }

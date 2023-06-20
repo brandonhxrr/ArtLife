@@ -37,10 +37,6 @@ public class Favorites extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycler_view);
 
-        PaintingData data = new PaintingData();
-
-        recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), 2, GridLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(new PaintingAdapter(data.getData()));
         return view;
     }
 }

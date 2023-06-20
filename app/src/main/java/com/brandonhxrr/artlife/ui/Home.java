@@ -21,6 +21,7 @@ import com.brandonhxrr.artlife.R;
 import com.brandonhxrr.artlife.data.Blog.Blog;
 import com.brandonhxrr.artlife.data.Blog.BlogAdapter;
 import com.brandonhxrr.artlife.data.Blog.BlogData;
+import com.brandonhxrr.artlife.data.Painting.Painting;
 import com.brandonhxrr.artlife.data.Painting.PaintingAdapter;
 import com.brandonhxrr.artlife.data.Painting.PaintingData;
 import com.brandonhxrr.artlife.ui.intro.IntroFragment;
@@ -76,7 +77,6 @@ public class Home extends Fragment {
         db.collection("blogs")
                 .addSnapshotListener((queryDocumentSnapshots, error) -> {
                     if (error != null) {
-                        // Manejar el error si ocurre
                         return;
                     }
 
@@ -92,10 +92,24 @@ public class Home extends Fragment {
                     recyclerView.setAdapter(new BlogAdapter(blogItemList));
                 });
 
-        PaintingData paintingData = new PaintingData();
+        db.collection("paintings")
+                .addSnapshotListener((queryDocumentSnapshots, error) -> {
+                    if (error != null) {
+                        return;
+                    }
 
-        recentsRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(),  LinearLayoutManager.HORIZONTAL, false));
-        recentsRecyclerView.setAdapter(new PaintingAdapter(paintingData.getData()));
+                    List<Painting> paintingList = new ArrayList<>();
+
+                    assert queryDocumentSnapshots != null;
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        Painting paintingItem = documentSnapshot.toObject(Painting.class);
+                        paintingList.add(paintingItem);
+                    }
+
+                    recentsRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
+                    recentsRecyclerView.setAdapter(new PaintingAdapter(paintingList));
+                });
+
 
        textHello.setText("Hola, " + currentUser.getDisplayName().split(" ")[0]);
        if(currentUser.getPhotoUrl() != null){

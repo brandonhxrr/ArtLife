@@ -14,6 +14,10 @@ public class Painting implements Serializable {
     String imageUri;
     String description;
 
+    public Painting(){
+
+    }
+
     public Painting(int id, String name, String author, String location, String date, String museum, String technique, String urlMuseum, String imageUri, String description) {
         this.id = id;
         this.name = name;
