@@ -109,5 +109,11 @@ public class PaintingDetail extends AppCompatActivity {
                 isFavorite = !isFavorite;
             });
         }
+
+        paintingImage.setOnClickListener(v -> {
+            Intent startDetails = new Intent(PaintingDetail.this, FullScreen.class);
+            startDetails.putExtra("urlImage", painting.getImageUri());
+            startActivity(startDetails);
+        });
     }
 }

@@ -39,6 +39,12 @@ public class BlogDetail extends AppCompatActivity {
             blogContent.setText(blog.getContent());
         }
 
+        blogImage.setOnClickListener(v -> {
+            Intent startDetails = new Intent(BlogDetail.this, FullScreen.class);
+            startDetails.putExtra("urlImage", blog.getImageUri());
+           startActivity(startDetails);
+        });
+
 
     }
 }
